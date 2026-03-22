@@ -19,7 +19,7 @@
 
 ## Visual System
 
-- Typeface: SUSE
+- Typeface: Green
 - Base background: white and soft mint surfaces
 - Primary ink: `#0C322C`
 - Accent green: `#30BA78`
