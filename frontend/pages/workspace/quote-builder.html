@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuoteFlow Quote Builder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/app.css" />
+    <script src="../../assets/js/capture-optin.js" defer></script>
+    <script src="../../assets/js/app.js" defer></script>
+  </head>
+  <body class="app-body" data-page="quote-builder">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="../../index.html"><span class="brand-mark">QF</span><span class="brand-copy"><strong>QuoteFlow</strong><span>Quote operations workspace</span></span></a>
+        <div class="nav-group">
+          <h4>Workspace</h4>
+          <a class="nav-link" href="./overview.html"><span><i class="nav-dot"></i>Overview</span></a>
+          <a class="nav-link" href="./watchlist.html"><span><i class="nav-dot"></i>Watchlist</span></a>
+          <a class="nav-link" href="./sku-detail.html"><span><i class="nav-dot"></i>SKU Detail</span></a>
+          <a class="nav-link" href="./alerts.html"><span><i class="nav-dot"></i>Alerts</span></a>
+          <a class="nav-link active" href="./quote-builder.html" aria-current="page"><span><i class="nav-dot"></i>Quote Builder</span></a>
+          <a class="nav-link" href="./suppliers.html"><span><i class="nav-dot"></i>Suppliers</span></a>
+          <a class="nav-link" href="./settings.html"><span><i class="nav-dot"></i>Settings</span></a>
+        </div>
+        <div class="sidebar-card"><strong>Package status</strong><p>Three items staged for negotiation with estimated savings of ¥58k.</p><a href="./settings.html">Approval route</a></div>
+      </aside>
+
+      <div class="workspace">
+        <header class="workspace-topbar">
+          <form class="searchbar" role="search">
+            <span class="searchbar-icon" aria-hidden="true"></span>
+            <label class="sr-only" for="builder-search">Search staged item or supplier</label>
+            <input id="builder-search" name="q" type="search" placeholder="Search staged item or supplier" />
+          </form>
+          <div class="topbar-actions">
+            <span class="chip">Draft pack</span>
+            <span class="user-pill">Eason</span>
+          </div>
+        </header>
+
+        <main class="workspace-main" id="main-content" tabindex="-1">
+          <section class="page-head" data-reveal>
+            <div>
+              <p class="eyebrow">Quote Builder</p>
+              <h1>Assemble the next move.</h1>
+              <p>From selected alerts to a clean outbound package with minimal friction.</p>
+            </div>
+            <div class="page-actions">
+              <a class="secondary-btn" href="./alerts.html">Back to alerts</a>
+              <a class="primary-btn" href="./suppliers.html">Send to suppliers</a>
+            </div>
+          </section>
+
+          <section class="builder-grid" data-reveal>
+            <article class="builder-card">
+              <div class="builder-top">
+                <div>
+                  <p class="eyebrow">Package lines</p>
+                  <h3>Selected items</h3>
+                </div>
+                <span class="badge">3 items</span>
+              </div>
+              <div class="builder-lines">
+                <div class="builder-line"><span>304 Stainless Sheet</span><strong>Shinwell / ¥4,860</strong></div>
+                <div class="builder-line"><span>Aluminum Coil</span><strong>North Harbor / ¥18,420</strong></div>
+                <div class="builder-line"><span>Nickel Bar</span><strong>Marlin Steel / ¥126,800</strong></div>
+              </div>
+              <div class="field-stack">
+                <div class="field"><label>Message</label><strong>Need updated commercial terms before 14:00.</strong><p>Request revised freight and lead-time confirmation.</p></div>
+                <div class="field"><label>Review owner</label><strong>Procurement lead / East region</strong><p>Auto-added based on category routing.</p></div>
+              </div>
+            </article>
+
+            <article class="builder-card">
+              <div class="builder-top">
+                <div>
+                  <p class="eyebrow">Summary</p>
+                  <h3>Expected outcome</h3>
+                </div>
+              </div>
+              <div class="builder-total">
+                <span>Estimated saving</span>
+                <strong>¥58,200</strong>
+              </div>
+              <div class="field-stack">
+                <div class="field"><label>Suppliers</label><strong>4 recipients</strong><p>2 primary, 2 fallback.</p></div>
+                <div class="field"><label>Approval</label><strong>1 step</strong><p>Auto-route to category lead.</p></div>
+                <div class="field"><label>Dispatch</label><strong>Today 14:00</strong><p>Scheduled after final review.</p></div>
+              </div>
+              <div class="inline-actions inline-actions-row">
+                <a class="secondary-btn" href="./settings.html">Edit rules</a>
+                <a class="primary-btn" href="./suppliers.html">Preview send</a>
+              </div>
+            </article>
+          </section>
+
+          <section class="panel" data-reveal>
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Workflow</p>
+                <h2>Approval path</h2>
+              </div>
+            </div>
+            <div class="workflow-grid">
+              <div class="workflow-step"><small>01</small><strong>Select</strong><p>Pull lines from alerts or SKU pages.</p></div>
+              <div class="workflow-step"><small>02</small><strong>Review</strong><p>Check supplier fit and routing rules.</p></div>
+              <div class="workflow-step"><small>03</small><strong>Send</strong><p>Dispatch after approval.</p></div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

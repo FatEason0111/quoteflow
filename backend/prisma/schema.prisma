@@ -1,0 +1,503 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum UserRole {
+  ADMIN
+  ANALYST
+  BUYER
+  APPROVER
+  FINANCE_APPROVER
+}
+
+enum AuthProvider {
+  LOCAL
+  SSO
+  GOOGLE
+  WECHAT
+}
+
+enum WatchlistStatus {
+  REVIEW
+  ESCALATE
+  GOOD
+  TRACK
+}
+
+enum AlertStatus {
+  OPEN
+  RESOLVED
+  DISMISSED
+}
+
+enum AlertSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum AlertType {
+  PRICE_MOVEMENT
+  QUOTE_SPREAD
+  RESPONSE_SLA
+}
+
+enum QuotePackageStatus {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  REJECTED
+  DISPATCHED
+  CANCELLED
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum DispatchStatus {
+  RECORDED
+  RESPONDED
+  EXPIRED
+}
+
+enum QuoteRequestStatus {
+  PENDING
+  RESPONDED
+  EXPIRED
+}
+
+enum ImportJobType {
+  SKUS
+  SUPPLIERS
+  PRICE_POINTS
+  QUOTES
+}
+
+enum ImportJobStatus {
+  PENDING
+  COMPLETED
+  PARTIAL
+  FAILED
+}
+
+model Workspace {
+  id                     String                 @id @default(cuid())
+  name                   String
+  slug                   String                 @unique
+  timezone               String                 @default("Asia/Shanghai")
+  currency               String                 @default("CNY")
+  createdAt              DateTime               @default(now())
+  updatedAt              DateTime               @updatedAt
+  users                  User[]
+  authSessions           AuthSession[]
+  skus                   Sku[]
+  watchlistItems         WatchlistItem[]
+  pricePoints            PricePoint[]
+  suppliers              Supplier[]
+  supplierQuotes         SupplierQuote[]
+  quoteRequests          QuoteRequest[]
+  alerts                 Alert[]
+  quotePackages          QuotePackage[]
+  quotePackageDispatches QuotePackageDispatch[]
+  settings               WorkspaceSetting?
+  approvalRules          ApprovalRule[]
+  importJobs             ImportJob[]
+  auditLogs              AuditLog[]
+}
+
+model User {
+  id                  String                  @id @default(cuid())
+  workspaceId         String
+  email               String
+  name                String
+  passwordHash        String
+  role                UserRole
+  status              UserStatus              @default(ACTIVE)
+  authProvider        AuthProvider            @default(LOCAL)
+  lastLoginAt         DateTime?
+  createdAt           DateTime                @default(now())
+  updatedAt           DateTime                @updatedAt
+  workspace           Workspace               @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  authSessions        AuthSession[]
+  createdQuotePacks   QuotePackage[]          @relation("QuotePackageCreator")
+  assignedApprovals   QuotePackageApproval[]  @relation("ApprovalAssignee")
+  dispatches          QuotePackageDispatch[]  @relation("DispatchActor")
+  importJobs          ImportJob[]             @relation("ImportActor")
+  auditLogs           AuditLog[]              @relation("AuditActor")
+
+  @@unique([workspaceId, email])
+  @@index([workspaceId, role])
+}
+
+model AuthSession {
+  id               String    @id @default(cuid())
+  workspaceId      String
+  userId           String
+  sessionTokenHash String    @unique
+  expiresAt        DateTime
+  lastSeenAt       DateTime  @default(now())
+  ipAddress        String?
+  userAgent        String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  workspace        Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([workspaceId, expiresAt])
+}
+
+model Sku {
+  id                 String             @id @default(cuid())
+  workspaceId        String
+  code               String
+  name               String
+  category           String
+  region             String?
+  unit               String?
+  currency           String             @default("CNY")
+  description        String?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  workspace          Workspace          @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  watchlistItems     WatchlistItem[]
+  pricePoints        PricePoint[]
+  supplierQuotes     SupplierQuote[]
+  alerts             Alert[]
+  quotePackageLines  QuotePackageLine[]
+  sourceQuotePacks   QuotePackage[]     @relation("PackageSourceSku")
+
+  @@unique([workspaceId, code])
+  @@index([workspaceId, category])
+}
+
+model WatchlistItem {
+  id          String          @id @default(cuid())
+  workspaceId String
+  skuId       String
+  priority    Int             @default(0)
+  status      WatchlistStatus @default(REVIEW)
+  note        String?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  workspace   Workspace       @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  sku         Sku             @relation(fields: [skuId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, skuId])
+  @@index([workspaceId, status])
+}
+
+model PricePoint {
+  id          String     @id @default(cuid())
+  workspaceId String
+  skuId       String
+  importJobId String?
+  price       Decimal    @db.Decimal(18, 4)
+  currency    String     @default("CNY")
+  source      String?
+  recordedAt  DateTime
+  createdAt   DateTime   @default(now())
+  workspace   Workspace  @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  sku         Sku        @relation(fields: [skuId], references: [id], onDelete: Cascade)
+  importJob    ImportJob? @relation(fields: [importJobId], references: [id], onDelete: SetNull)
+
+  @@index([skuId, recordedAt])
+  @@index([workspaceId, recordedAt])
+}
+
+model Supplier {
+  id                 String              @id @default(cuid())
+  workspaceId        String
+  code               String
+  name               String
+  region             String?
+  categories         String[]            @default([])
+  contactEmail       String?
+  tier               String?
+  score              Int                 @default(0)
+  quoteAccuracyPct   Decimal?            @db.Decimal(5, 2)
+  isActive           Boolean             @default(true)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  workspace          Workspace           @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  supplierQuotes     SupplierQuote[]
+  alerts             Alert[]
+  quoteRequests      QuoteRequest[]
+  preferredOnLines   QuotePackageLine[]  @relation("LinePreferredSupplier")
+
+  @@unique([workspaceId, code])
+  @@index([workspaceId, name])
+}
+
+model SupplierQuote {
+  id             String       @id @default(cuid())
+  workspaceId    String
+  skuId          String
+  supplierId     String
+  quoteRequestId String?
+  importJobId    String?
+  unitPrice      Decimal      @db.Decimal(18, 4)
+  currency       String       @default("CNY")
+  leadTimeDays   Int?
+  quoteDate      DateTime
+  effectiveAt    DateTime?
+  expiresAt      DateTime?
+  isActive       Boolean      @default(true)
+  notes          String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  workspace      Workspace    @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  sku            Sku          @relation(fields: [skuId], references: [id], onDelete: Cascade)
+  supplier       Supplier     @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  quoteRequest   QuoteRequest? @relation(fields: [quoteRequestId], references: [id], onDelete: SetNull)
+  importJob      ImportJob?   @relation(fields: [importJobId], references: [id], onDelete: SetNull)
+
+  @@index([skuId, quoteDate])
+  @@index([supplierId, quoteDate])
+  @@index([workspaceId, isActive])
+}
+
+model QuoteRequest {
+  id             String             @id @default(cuid())
+  workspaceId    String
+  quotePackageId String
+  supplierId     String
+  dispatchId     String?
+  requestedAt    DateTime
+  respondedAt    DateTime?
+  expiresAt      DateTime?
+  status         QuoteRequestStatus @default(PENDING)
+  responseNotes  String?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  workspace      Workspace          @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  quotePackage   QuotePackage       @relation(fields: [quotePackageId], references: [id], onDelete: Cascade)
+  supplier       Supplier           @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  dispatch       QuotePackageDispatch? @relation(fields: [dispatchId], references: [id], onDelete: SetNull)
+  supplierQuotes SupplierQuote[]
+  alerts         Alert[]
+
+  @@index([quotePackageId])
+  @@index([supplierId, status])
+  @@index([workspaceId, requestedAt])
+}
+
+model Alert {
+  id               String        @id @default(cuid())
+  workspaceId      String
+  skuId            String?
+  supplierId       String?
+  quoteRequestId   String?
+  type             AlertType
+  status           AlertStatus   @default(OPEN)
+  severity         AlertSeverity @default(MEDIUM)
+  title            String
+  summary          String
+  potentialSaving  Decimal?      @db.Decimal(18, 4)
+  affectedItems    Int?
+  windowLabel      String?
+  whyTitle         String?
+  whyCopy          String?
+  moveTitle        String?
+  moveCopy         String?
+  metricValue      Decimal?      @db.Decimal(18, 4)
+  thresholdValue   Decimal?      @db.Decimal(18, 4)
+  payload          Json?
+  resolvedAt       DateTime?
+  dismissedAt      DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  workspace        Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  sku              Sku?          @relation(fields: [skuId], references: [id], onDelete: SetNull)
+  supplier         Supplier?     @relation(fields: [supplierId], references: [id], onDelete: SetNull)
+  quoteRequest     QuoteRequest? @relation(fields: [quoteRequestId], references: [id], onDelete: SetNull)
+  sourceQuotePacks QuotePackage[] @relation("PackageSourceAlert")
+  sourceLineLinks  QuotePackageLine[] @relation("LineSourceAlert")
+
+  @@index([workspaceId, status, severity])
+  @@index([skuId, type])
+  @@index([quoteRequestId])
+}
+
+model QuotePackage {
+  id                  String                 @id @default(cuid())
+  workspaceId         String
+  createdByUserId     String
+  sourceAlertId       String?
+  sourceSkuId         String?
+  title               String
+  message             String?
+  scheduleAt          DateTime?
+  recipientSupplierIds Json?
+  status              QuotePackageStatus     @default(DRAFT)
+  currency            String                 @default("CNY")
+  totalAmount         Decimal                @default(0) @db.Decimal(18, 4)
+  estimatedSaving     Decimal                @default(0) @db.Decimal(18, 4)
+  submittedAt         DateTime?
+  approvedAt          DateTime?
+  rejectedAt          DateTime?
+  dispatchedAt        DateTime?
+  createdAt           DateTime               @default(now())
+  updatedAt           DateTime               @updatedAt
+  workspace           Workspace              @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  createdByUser       User                   @relation("QuotePackageCreator", fields: [createdByUserId], references: [id], onDelete: Restrict)
+  sourceAlert         Alert?                 @relation("PackageSourceAlert", fields: [sourceAlertId], references: [id], onDelete: SetNull)
+  sourceSku           Sku?                   @relation("PackageSourceSku", fields: [sourceSkuId], references: [id], onDelete: SetNull)
+  lines               QuotePackageLine[]
+  approvals           QuotePackageApproval[]
+  dispatches          QuotePackageDispatch[]
+  quoteRequests       QuoteRequest[]
+
+  @@index([workspaceId, status])
+  @@index([createdByUserId])
+}
+
+model QuotePackageLine {
+  id                 String        @id @default(cuid())
+  quotePackageId     String
+  skuId              String
+  alertId            String?
+  preferredSupplierId String?
+  quantity           Decimal       @default(1) @db.Decimal(18, 4)
+  currentBestQuote   Decimal?      @db.Decimal(18, 4)
+  targetUnitPrice    Decimal?      @db.Decimal(18, 4)
+  estimatedSaving    Decimal?      @db.Decimal(18, 4)
+  note               String?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  quotePackage       QuotePackage  @relation(fields: [quotePackageId], references: [id], onDelete: Cascade)
+  sku                Sku           @relation(fields: [skuId], references: [id], onDelete: Cascade)
+  alert              Alert?        @relation("LineSourceAlert", fields: [alertId], references: [id], onDelete: SetNull)
+  preferredSupplier  Supplier?     @relation("LinePreferredSupplier", fields: [preferredSupplierId], references: [id], onDelete: SetNull)
+
+  @@index([quotePackageId])
+  @@index([skuId])
+}
+
+model QuotePackageApproval {
+  id            String         @id @default(cuid())
+  quotePackageId String
+  stepOrder     Int
+  ruleId        String?
+  roleRequired  UserRole
+  assignedUserId String?
+  label         String
+  status        ApprovalStatus @default(PENDING)
+  comment       String?
+  decidedAt     DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  quotePackage  QuotePackage   @relation(fields: [quotePackageId], references: [id], onDelete: Cascade)
+  rule          ApprovalRule?  @relation(fields: [ruleId], references: [id], onDelete: SetNull)
+  assignedUser  User?          @relation("ApprovalAssignee", fields: [assignedUserId], references: [id], onDelete: SetNull)
+
+  @@unique([quotePackageId, stepOrder])
+  @@index([quotePackageId, status])
+}
+
+model QuotePackageDispatch {
+  id                  String         @id @default(cuid())
+  workspaceId         String
+  quotePackageId      String
+  dispatchedByUserId  String
+  recipientSupplierIds Json
+  status              DispatchStatus @default(RECORDED)
+  scheduledAt         DateTime?
+  recordedAt          DateTime       @default(now())
+  respondedAt         DateTime?
+  notes               String?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  workspace           Workspace      @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  quotePackage        QuotePackage   @relation(fields: [quotePackageId], references: [id], onDelete: Cascade)
+  dispatchedByUser    User           @relation("DispatchActor", fields: [dispatchedByUserId], references: [id], onDelete: Restrict)
+  quoteRequests       QuoteRequest[]
+
+  @@index([quotePackageId])
+  @@index([workspaceId, status])
+}
+
+model WorkspaceSetting {
+  id                       String    @id @default(cuid())
+  workspaceId              String    @unique
+  movementThresholdPercent Decimal   @default(5) @db.Decimal(8, 4)
+  quoteSpreadThresholdCny  Decimal   @default(300) @db.Decimal(18, 4)
+  responseSlaHours         Int       @default(36)
+  inboxDelivery            Boolean   @default(true)
+  emailDigest              Boolean   @default(true)
+  slackWecomCritical       Boolean   @default(false)
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
+  workspace                Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+
+model ApprovalRule {
+  id               String                 @id @default(cuid())
+  workspaceId      String
+  name             String
+  category         String?
+  minPackageAmount Decimal?               @db.Decimal(18, 4)
+  requiredRole     UserRole
+  stepOrder        Int
+  isActive         Boolean                @default(true)
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  workspace        Workspace              @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  approvals        QuotePackageApproval[]
+
+  @@index([workspaceId, stepOrder])
+  @@index([category])
+}
+
+model ImportJob {
+  id            String           @id @default(cuid())
+  workspaceId   String
+  createdByUserId String
+  type          ImportJobType
+  status        ImportJobStatus  @default(PENDING)
+  sourceName    String?
+  totalRows     Int              @default(0)
+  successCount  Int              @default(0)
+  failureCount  Int              @default(0)
+  rowErrors     Json?
+  startedAt     DateTime         @default(now())
+  completedAt   DateTime?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  workspace     Workspace        @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  createdByUser User             @relation("ImportActor", fields: [createdByUserId], references: [id], onDelete: Restrict)
+  pricePoints   PricePoint[]
+  supplierQuotes SupplierQuote[]
+
+  @@index([workspaceId, type])
+}
+
+model AuditLog {
+  id          String    @id @default(cuid())
+  workspaceId String
+  actorUserId String?
+  entityType  String
+  entityId    String
+  action      String
+  details     Json?
+  createdAt   DateTime  @default(now())
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  actorUser   User?     @relation("AuditActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([workspaceId, entityType, entityId])
+  @@index([workspaceId, createdAt])
+}

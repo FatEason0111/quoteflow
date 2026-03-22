@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuoteFlow Design Draft</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=SUSE:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <script src="./assets/js/capture-optin.js" defer></script>
+    <script src="./assets/js/app.js" defer></script>
+  </head>
+  <body data-page="landing">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="page-shell">
+      <div class="halo halo-left"></div>
+      <div class="halo halo-right"></div>
+
+      <header class="topbar">
+        <a class="brand-lockup" href="#overview">
+          <span class="brand-mark">QF</span>
+          <span class="brand-name">QuoteFlow</span>
+        </a>
+
+        <nav class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#board">Board</a>
+          <a href="#system">System</a>
+        </nav>
+
+        <div class="topbar-actions">
+          <button
+            class="topbar-login"
+            type="button"
+            data-login-open
+            aria-haspopup="dialog"
+            aria-controls="login-modal"
+            aria-expanded="false"
+          >
+            <span class="topbar-login-label" data-login-label>Login</span>
+          </button>
+        </div>
+      </header>
+
+      <main id="main-content" tabindex="-1">
+        <section class="hero" id="overview" data-reveal>
+          <div class="hero-copy">
+            <p class="eyebrow">SUSE palette / quieter interface</p>
+            <h1>
+              Price,
+              <br />
+              at a glance.
+            </h1>
+            <p class="lead">
+              A cleaner surface for quote review, supplier comparison, and fast action.
+            </p>
+
+            <div class="hero-actions">
+              <a class="primary-btn" href="#board">Open board</a>
+              <a class="secondary-btn" href="#system">Alert flow</a>
+            </div>
+
+            <div class="hero-stats">
+              <article>
+                <span>Tracked</span>
+                <strong>18.2k</strong>
+              </article>
+              <article>
+                <span>Move / 24h</span>
+                <strong>326</strong>
+              </article>
+              <article>
+                <span>Precision</span>
+                <strong>94.2%</strong>
+              </article>
+            </div>
+          </div>
+
+          <div class="board-card" id="board">
+            <div class="board-top">
+              <div>
+                <p class="eyebrow">Live board</p>
+                <h2>304 Stainless Sheet</h2>
+              </div>
+              <div class="price-chip">
+                <span>Now</span>
+                <strong>¥4,860</strong>
+              </div>
+            </div>
+
+            <div class="curve-panel">
+              <div class="curve-head">
+                <span>7D trend</span>
+                <strong>+3.8%</strong>
+              </div>
+
+              <svg viewBox="0 0 520 210" class="curve-graphic" aria-hidden="true">
+                <defs>
+                  <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(48,186,120,0.22)"></stop>
+                    <stop offset="100%" stop-color="rgba(48,186,120,0.02)"></stop>
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M12 182 C58 170, 78 158, 112 140 S175 102, 214 112 S281 158, 330 126 S413 64, 508 78 L508 210 L12 210 Z"
+                  fill="url(#trendFill)"
+                ></path>
+                <path
+                  d="M12 182 C58 170, 78 158, 112 140 S175 102, 214 112 S281 158, 330 126 S413 64, 508 78"
+                  fill="none"
+                  stroke="#30BA78"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                ></path>
+                <circle cx="508" cy="78" r="9" fill="#30BA78"></circle>
+              </svg>
+
+              <div class="axis-row">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+              </div>
+            </div>
+
+            <div class="signal-row">
+              <article>
+                <span>Best gap</span>
+                <strong>¥420</strong>
+              </article>
+              <article>
+                <span>Suppliers</span>
+                <strong>12</strong>
+              </article>
+              <article>
+                <span>Next alert</span>
+                <strong>14:00</strong>
+              </article>
+            </div>
+
+            <div class="detail-grid">
+              <div class="mini-card">
+                <div class="mini-head">
+                  <span>Quotes</span>
+                  <a href="#system">Compare</a>
+                </div>
+                <div class="quote-row">
+                  <span>Shinwell</span>
+                  <strong>¥4,860</strong>
+                </div>
+                <div class="quote-row">
+                  <span>North Harbor</span>
+                  <strong>¥5,040</strong>
+                </div>
+                <div class="quote-row">
+                  <span>Jade Source</span>
+                  <strong>¥5,280</strong>
+                </div>
+              </div>
+
+              <div class="mini-card mint-card" id="system">
+                <div class="mini-head">
+                  <span>Alert flow</span>
+                  <strong>3 steps</strong>
+                </div>
+                <div class="step-row">
+                  <span>01</span>
+                  <p>Detect</p>
+                </div>
+                <div class="step-row">
+                  <span>02</span>
+                  <p>Rank</p>
+                </div>
+                <div class="step-row">
+                  <span>03</span>
+                  <p>Act</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="principles" data-reveal>
+          <article>
+            <span>Watch</span>
+            <p>Price first.</p>
+          </article>
+          <article>
+            <span>Compare</span>
+            <p>Vendor side by side.</p>
+          </article>
+          <article>
+            <span>Act</span>
+            <p>Alert with next move.</p>
+          </article>
+        </section>
+      </main>
+
+      <div class="auth-modal-shell" id="login-modal" hidden>
+        <div class="auth-backdrop" data-login-close></div>
+
+        <section
+          class="auth-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="login-title"
+          aria-describedby="login-copy"
+          tabindex="-1"
+        >
+          <aside class="auth-aside">
+            <p class="eyebrow">Secure workspace access</p>
+            <h2 id="login-title">Sign in once, move from alert to quote without friction.</h2>
+            <p class="auth-aside-copy" id="login-copy">
+              A polished access layer for procurement teams: local demo users, enterprise SSO,
+              or quick provider sign-in when you need to review a board fast.
+            </p>
+
+            <div class="auth-trust-grid">
+              <article class="auth-trust-card">
+                <span>Role-aware</span>
+                <strong>Buyer, analyst, and approver views stay separated.</strong>
+              </article>
+              <article class="auth-trust-card">
+                <span>Federated</span>
+                <strong>Ready for SSO, Google, and WeChat entry points.</strong>
+              </article>
+              <article class="auth-trust-card">
+                <span>On-device demo</span>
+                <strong>Local sessions are stored only in this browser prototype.</strong>
+              </article>
+            </div>
+
+            <div class="auth-note">
+              <span class="auth-note-dot"></span>
+              <p>Trusted access for pricing review, supplier comparison, and approval handoff.</p>
+            </div>
+          </aside>
+
+          <div class="auth-panel">
+            <button class="auth-close" type="button" data-login-close aria-label="Close sign in">
+              ×
+            </button>
+
+            <div class="auth-panel-scroll">
+              <p class="eyebrow">Workspace entry</p>
+              <h3>Choose the right login path</h3>
+              <p class="auth-panel-copy">
+                Use your work identity provider, or sign in with a local demo account for this
+                prototype.
+              </p>
+
+              <div class="auth-status" data-auth-status aria-live="polite">
+                Choose a provider or continue with a local user.
+              </div>
+
+              <div data-auth-guest>
+                <div class="auth-provider-stack">
+                  <button class="auth-provider" type="button" data-auth-provider="sso">
+                    <span class="provider-mark provider-mark-sso">SSO</span>
+                    <span class="provider-copy">
+                      <strong>Continue with Enterprise SSO</strong>
+                      <small>SAML or company identity provider</small>
+                    </span>
+                  </button>
+
+                  <button class="auth-provider" type="button" data-auth-provider="google">
+                    <span class="provider-mark provider-mark-google">G</span>
+                    <span class="provider-copy">
+                      <strong>Continue with Google</strong>
+                      <small>Use your workspace Google account</small>
+                    </span>
+                  </button>
+
+                  <button class="auth-provider" type="button" data-auth-provider="wechat">
+                    <span class="provider-mark provider-mark-wechat">微</span>
+                    <span class="provider-copy">
+                      <strong>Continue with WeChat</strong>
+                      <small>Fast approval access from mobile</small>
+                    </span>
+                  </button>
+                </div>
+
+                <div class="auth-divider">
+                  <span>or continue with a local user</span>
+                </div>
+
+                <form class="auth-form" data-auth-form>
+                  <div class="auth-form-grid">
+                    <label class="auth-field">
+                      <span>Full name</span>
+                      <input
+                        id="login-name"
+                        name="name"
+                        type="text"
+                        autocomplete="name"
+                        placeholder="Aileen Wu"
+                      />
+                    </label>
+
+                    <label class="auth-field">
+                      <span>Work email</span>
+                      <input
+                        id="login-email"
+                        name="email"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="name@company.com"
+                        required
+                      />
+                    </label>
+                  </div>
+
+                  <label class="auth-field">
+                    <span>Password</span>
+                    <input
+                      id="login-password"
+                      name="password"
+                      type="password"
+                      autocomplete="current-password"
+                      placeholder="Enter your password"
+                      minlength="8"
+                      required
+                    />
+                  </label>
+
+                  <div class="auth-form-row">
+                    <label class="auth-check">
+                      <input type="checkbox" name="remember" checked />
+                      <span>Remember this device</span>
+                    </label>
+                    <a class="auth-inline-link" href="#system">Need workspace access?</a>
+                  </div>
+
+                  <button class="primary-btn auth-submit" type="submit">
+                    Sign in with local account
+                  </button>
+                </form>
+
+                <p class="auth-footnote">
+                  This prototype stores local account sessions on your device only.
+                </p>
+              </div>
+
+              <section class="auth-session-card" data-auth-session hidden>
+                <p class="auth-session-label">Signed in</p>
+                <div class="auth-session-user">
+                  <span class="auth-avatar" data-auth-avatar>AW</span>
+                  <div>
+                    <strong data-auth-name>Aileen Wu</strong>
+                    <span data-auth-meta>Local account</span>
+                  </div>
+                </div>
+
+                <div class="auth-session-actions">
+                  <a class="primary-btn" href="./pages/workspace/overview.html">Open workspace</a>
+                  <button class="secondary-btn" type="button" data-auth-signout>
+                    Sign out
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

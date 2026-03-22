@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuoteFlow Watchlist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/app.css" />
+    <script src="../../assets/js/capture-optin.js" defer></script>
+    <script src="../../assets/js/app.js" defer></script>
+  </head>
+  <body class="app-body" data-page="watchlist">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="../../index.html"><span class="brand-mark">QF</span><span class="brand-copy"><strong>QuoteFlow</strong><span>Quote operations workspace</span></span></a>
+        <div class="nav-group">
+          <h4>Workspace</h4>
+          <a class="nav-link" href="./overview.html"><span><i class="nav-dot"></i>Overview</span></a>
+          <a class="nav-link active" href="./watchlist.html" aria-current="page"><span><i class="nav-dot"></i>Watchlist</span><span class="nav-pill">54</span></a>
+          <a class="nav-link" href="./sku-detail.html"><span><i class="nav-dot"></i>SKU Detail</span></a>
+          <a class="nav-link" href="./alerts.html"><span><i class="nav-dot"></i>Alerts</span><span class="nav-pill">9</span></a>
+          <a class="nav-link" href="./quote-builder.html"><span><i class="nav-dot"></i>Quote Builder</span></a>
+          <a class="nav-link" href="./suppliers.html"><span><i class="nav-dot"></i>Suppliers</span></a>
+          <a class="nav-link" href="./settings.html"><span><i class="nav-dot"></i>Settings</span></a>
+        </div>
+        <div class="sidebar-card"><strong>Saved view</strong><p>High variance metals, East region, 30-day threshold.</p><a href="./alerts.html">Open signals</a></div>
+      </aside>
+
+      <div class="workspace">
+        <header class="workspace-topbar">
+          <form class="searchbar" role="search">
+            <span class="searchbar-icon" aria-hidden="true"></span>
+            <label class="sr-only" for="watchlist-search">Filter by SKU code, category, supplier</label>
+            <input id="watchlist-search" name="q" type="search" placeholder="Filter by SKU code, category, supplier" />
+          </form>
+          <div class="topbar-actions">
+            <span class="chip">Saved view</span>
+            <button class="secondary-btn" type="button">Export CSV</button>
+            <span class="user-pill">Eason</span>
+          </div>
+        </header>
+
+        <main class="workspace-main" id="main-content" tabindex="-1">
+          <section class="page-head" data-reveal>
+            <div>
+              <p class="eyebrow">Watchlist</p>
+              <h1>Track what moves.</h1>
+              <p>Filter-heavy table with clean density and fast scanning.</p>
+            </div>
+            <div class="page-actions">
+              <a class="secondary-btn" href="./suppliers.html">Supplier view</a>
+              <a class="primary-btn" href="./sku-detail.html">Open SKU detail</a>
+            </div>
+          </section>
+
+          <section class="panel" data-reveal>
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Filters</p>
+                <h2>Active slice</h2>
+              </div>
+              <div class="filters">
+                <div class="chip">Region: East</div>
+                <div class="chip">Category: Metals</div>
+                <div class="chip">Threshold: 30D</div>
+                <div class="chip">Status: Open</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card-grid-4" data-reveal>
+            <article class="metric"><span>Open lines</span><strong>54</strong><span class="delta">12 critical</span></article>
+            <article class="metric"><span>Average spread</span><strong>6.2%</strong><span class="delta">vs last week +0.8%</span></article>
+            <article class="metric"><span>Suppliers in view</span><strong>37</strong><span class="delta">5 new this month</span></article>
+            <article class="metric"><span>Potential saving</span><strong>¥182k</strong><span class="delta">ranked by line item</span></article>
+          </section>
+
+          <section class="table-card" data-reveal>
+            <div class="table-toolbar">
+              <div>
+                <p class="eyebrow">Table</p>
+                <h3>SKU watchlist</h3>
+                <p>Clear row rhythm, compact signals, and strong numeric alignment.</p>
+              </div>
+              <div class="inline-actions">
+                <a class="secondary-btn" href="./alerts.html">Open alerts</a>
+                <a class="secondary-btn" href="./quote-builder.html">Add selected</a>
+              </div>
+            </div>
+            <table class="table" data-sortable>
+              <thead>
+                <tr>
+                  <th>SKU</th>
+                  <th>Category</th>
+                  <th>Best quote</th>
+                  <th>Spread</th>
+                  <th>Trend</th>
+                  <th>Supplier</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="row-title"><strong>CN-SS-304</strong><span>304 Stainless Sheet</span></div></td>
+                  <td>Metals</td>
+                  <td class="mono">¥4,860</td>
+                  <td class="mono">¥420</td>
+                  <td><span class="badge">+3.8%</span></td>
+                  <td>Shinwell</td>
+                  <td><span class="badge amber">Review</span></td>
+                </tr>
+                <tr>
+                  <td><div class="row-title"><strong>CN-AL-1060</strong><span>Aluminum Coil</span></div></td>
+                  <td>Metals</td>
+                  <td class="mono">¥18,420</td>
+                  <td class="mono">¥910</td>
+                  <td><span class="badge amber">+6.1%</span></td>
+                  <td>North Harbor</td>
+                  <td><span class="badge rose">Escalate</span></td>
+                </tr>
+                <tr>
+                  <td><div class="row-title"><strong>CN-CU-8MM</strong><span>Copper Rod</span></div></td>
+                  <td>Metals</td>
+                  <td class="mono">¥61,300</td>
+                  <td class="mono">¥580</td>
+                  <td><span class="badge rose">-1.4%</span></td>
+                  <td>Atlas Trade</td>
+                  <td><span class="badge">Good</span></td>
+                </tr>
+                <tr>
+                  <td><div class="row-title"><strong>CN-ZN-PLATE</strong><span>Zinc Plate</span></div></td>
+                  <td>Surface</td>
+                  <td class="mono">¥22,740</td>
+                  <td class="mono">¥260</td>
+                  <td><span class="badge">+1.9%</span></td>
+                  <td>Jade Source</td>
+                  <td><span class="badge">Track</span></td>
+                </tr>
+                <tr>
+                  <td><div class="row-title"><strong>CN-NI-BAR</strong><span>Nickel Bar</span></div></td>
+                  <td>Metals</td>
+                  <td class="mono">¥126,800</td>
+                  <td class="mono">¥1,260</td>
+                  <td><span class="badge amber">+4.3%</span></td>
+                  <td>Marlin Steel</td>
+                  <td><span class="badge amber">Review</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

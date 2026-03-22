@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuoteFlow Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/app.css" />
+    <script src="../../assets/js/capture-optin.js" defer></script>
+    <script src="../../assets/js/app.js" defer></script>
+  </head>
+  <body class="app-body" data-page="settings">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="../../index.html"><span class="brand-mark">QF</span><span class="brand-copy"><strong>QuoteFlow</strong><span>Quote operations workspace</span></span></a>
+        <div class="nav-group">
+          <h4>Workspace</h4>
+          <a class="nav-link" href="./overview.html"><span><i class="nav-dot"></i>Overview</span></a>
+          <a class="nav-link" href="./watchlist.html"><span><i class="nav-dot"></i>Watchlist</span></a>
+          <a class="nav-link" href="./sku-detail.html"><span><i class="nav-dot"></i>SKU Detail</span></a>
+          <a class="nav-link" href="./alerts.html"><span><i class="nav-dot"></i>Alerts</span></a>
+          <a class="nav-link" href="./quote-builder.html"><span><i class="nav-dot"></i>Quote Builder</span></a>
+          <a class="nav-link" href="./suppliers.html"><span><i class="nav-dot"></i>Suppliers</span></a>
+          <a class="nav-link active" href="./settings.html" aria-current="page"><span><i class="nav-dot"></i>Settings</span></a>
+        </div>
+        <div class="sidebar-card"><strong>Rules</strong><p>Thresholds, routing, and delivery channels stay visible and simple.</p><a href="./alerts.html">Back to alerts</a></div>
+      </aside>
+
+      <div class="workspace">
+        <header class="workspace-topbar">
+          <form class="searchbar" role="search">
+            <span class="searchbar-icon" aria-hidden="true"></span>
+            <label class="sr-only" for="settings-search">Search rule, channel, approver</label>
+            <input id="settings-search" name="q" type="search" placeholder="Search rule, channel, approver" />
+          </form>
+          <div class="topbar-actions">
+            <span class="chip">Workspace settings</span>
+            <span class="user-pill">Eason</span>
+          </div>
+        </header>
+
+        <main class="workspace-main" id="main-content" tabindex="-1">
+          <section class="page-head" data-reveal>
+            <div>
+              <p class="eyebrow">Settings</p>
+              <h1>Quiet rules, clear routing.</h1>
+              <p>Alert thresholds, message delivery, and approval logic in one simple surface.</p>
+            </div>
+            <div class="page-actions">
+              <a class="secondary-btn" href="./overview.html">Back to overview</a>
+              <button class="primary-btn" type="button" data-settings-save>
+                Save changes
+              </button>
+            </div>
+          </section>
+
+          <p class="page-status" data-settings-status aria-live="polite">
+            No unsaved changes.
+          </p>
+
+          <section class="settings-grid" data-reveal>
+            <article class="rule-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Thresholds</p>
+                  <h3>Price rules</h3>
+                </div>
+              </div>
+              <div class="field-stack">
+                <div class="field"><label>30D movement</label><strong>5% band</strong><p>Trigger review when crossed.</p></div>
+                <div class="field"><label>Quote spread</label><strong>¥300 minimum</strong><p>Send to inbox only when actionable.</p></div>
+                <div class="field"><label>Response SLA</label><strong>36 hours</strong><p>Escalate delayed suppliers.</p></div>
+              </div>
+            </article>
+
+            <article class="rule-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Delivery</p>
+                  <h3>Channels</h3>
+                </div>
+              </div>
+              <div class="toggle-list">
+                <div class="toggle-row"><div><strong>Inbox</strong><p>Default workspace delivery.</p></div><button class="toggle on" type="button" role="switch" aria-checked="true" aria-label="Toggle inbox delivery" data-switch data-setting="inbox_delivery"></button></div>
+                <div class="toggle-row"><div><strong>Email digest</strong><p>Daily summary at 17:30.</p></div><button class="toggle on" type="button" role="switch" aria-checked="true" aria-label="Toggle email digest" data-switch data-setting="email_digest"></button></div>
+                <div class="toggle-row"><div><strong>Slack / WeCom</strong><p>Only critical alerts.</p></div><button class="toggle" type="button" role="switch" aria-checked="false" aria-label="Toggle Slack or WeCom delivery" data-switch data-setting="slack_wecom_critical"></button></div>
+              </div>
+            </article>
+          </section>
+
+          <section class="settings-grid" data-reveal>
+            <article class="rule-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Routing</p>
+                  <h3>Approval path</h3>
+                </div>
+              </div>
+              <div class="field-stack">
+                <div class="field"><label>Metals</label><strong>Category lead</strong><p>Single-step approval.</p></div>
+                <div class="field"><label>High value</label><strong>Lead + finance</strong><p>Only above ¥300k package value.</p></div>
+              </div>
+            </article>
+            <article class="rule-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Governance</p>
+                  <h3>Review cadence</h3>
+                </div>
+              </div>
+              <div class="workflow-grid">
+                <div class="workflow-step"><small>Daily</small><strong>Summary</strong><p>Signal digest for active watchlist.</p></div>
+                <div class="workflow-step"><small>Weekly</small><strong>Review</strong><p>Threshold tuning and supplier refresh.</p></div>
+                <div class="workflow-step"><small>Monthly</small><strong>Audit</strong><p>Rule performance and routing quality.</p></div>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

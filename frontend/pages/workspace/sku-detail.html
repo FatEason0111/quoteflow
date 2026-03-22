@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuoteFlow SKU Detail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/app.css" />
+    <script src="../../assets/js/capture-optin.js" defer></script>
+    <script src="../../assets/js/app.js" defer></script>
+  </head>
+  <body class="app-body" data-page="sku-detail">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="../../index.html"><span class="brand-mark">QF</span><span class="brand-copy"><strong>QuoteFlow</strong><span>Quote operations workspace</span></span></a>
+        <div class="nav-group">
+          <h4>Workspace</h4>
+          <a class="nav-link" href="./overview.html"><span><i class="nav-dot"></i>Overview</span></a>
+          <a class="nav-link" href="./watchlist.html"><span><i class="nav-dot"></i>Watchlist</span></a>
+          <a class="nav-link active" href="./sku-detail.html" aria-current="page"><span><i class="nav-dot"></i>SKU Detail</span></a>
+          <a class="nav-link" href="./alerts.html"><span><i class="nav-dot"></i>Alerts</span><span class="nav-pill">9</span></a>
+          <a class="nav-link" href="./quote-builder.html"><span><i class="nav-dot"></i>Quote Builder</span></a>
+          <a class="nav-link" href="./suppliers.html"><span><i class="nav-dot"></i>Suppliers</span></a>
+          <a class="nav-link" href="./settings.html"><span><i class="nav-dot"></i>Settings</span></a>
+        </div>
+        <div class="sidebar-card"><strong>Selected SKU</strong><p>304 Stainless Sheet is up 3.8% in 7D with two vendors out of threshold.</p><a href="./quote-builder.html">Build package</a></div>
+      </aside>
+
+      <div class="workspace">
+        <header class="workspace-topbar">
+          <form class="searchbar" role="search">
+            <span class="searchbar-icon" aria-hidden="true"></span>
+            <label class="sr-only" for="sku-search">Search SKU detail</label>
+            <input id="sku-search" name="q" type="search" placeholder="CN-SS-304 / 304 Stainless Sheet" />
+          </form>
+          <div class="topbar-actions">
+            <span class="chip">Metals</span>
+            <span class="chip">East region</span>
+            <span class="user-pill">Eason</span>
+          </div>
+        </header>
+
+        <main class="workspace-main" id="main-content" tabindex="-1">
+          <section class="page-head" data-reveal>
+            <div>
+              <p class="eyebrow">SKU Detail</p>
+              <h1>304 Stainless Sheet</h1>
+              <p>Trend, supplier spread, and the next best move in one view.</p>
+            </div>
+            <div class="page-actions">
+              <a class="secondary-btn" href="./watchlist.html">Back to list</a>
+              <a class="primary-btn" href="./quote-builder.html">Use in package</a>
+            </div>
+          </section>
+
+          <section class="detail-split" data-reveal>
+            <article class="panel">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Trend</p>
+                  <h2>30-day price history</h2>
+                </div>
+                <span class="badge">Now ¥4,860</span>
+              </div>
+              <div class="curve-card">
+                <div class="curve-head"><span>Volatility</span><strong>Low to medium</strong></div>
+                <svg viewBox="0 0 720 260" class="curve-graphic" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="detailFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(48,186,120,0.26)"></stop>
+                      <stop offset="100%" stop-color="rgba(48,186,120,0.03)"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path d="M20 208 C90 182, 140 122, 188 134 S274 194, 322 180 S420 110, 466 112 S560 166, 610 154 S668 124, 700 88 L700 244 L20 244 Z" fill="url(#detailFill)"></path>
+                  <path d="M20 208 C90 182, 140 122, 188 134 S274 194, 322 180 S420 110, 466 112 S560 166, 610 154 S668 124, 700 88" fill="none" stroke="#30BA78" stroke-width="6" stroke-linecap="round"></path>
+                  <circle cx="700" cy="88" r="8" fill="#30BA78"></circle>
+                </svg>
+                <div class="axis-labels">
+                  <span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>Now</span>
+                </div>
+              </div>
+              <div class="signal-strip">
+                <article class="signal-card"><span>Best supplier</span><strong>Shinwell</strong></article>
+                <article class="signal-card"><span>Quote spread</span><strong>¥420</strong></article>
+                <article class="signal-card"><span>Response risk</span><strong>2 vendors</strong></article>
+              </div>
+            </article>
+
+            <article class="detail-card">
+              <div class="detail-head">
+                <div>
+                  <p class="eyebrow">Recommendation</p>
+                  <h3>Suggested action</h3>
+                </div>
+                <span class="badge">Ready</span>
+              </div>
+              <div class="field-stack">
+                <div class="field"><label>Primary move</label><strong>Open negotiation with Shinwell and North Harbor</strong><p>Window recommended before 14:00.</p></div>
+                <div class="field"><label>Reason</label><strong>Spread is wide enough to create leverage</strong><p>Top two suppliers differ by 3.7%.</p></div>
+                <div class="field"><label>Risk</label><strong>Jade Source quote is delayed</strong><p>Response exceeded 36 hours.</p></div>
+              </div>
+            </article>
+          </section>
+
+          <section class="card-grid-3" data-reveal>
+            <article class="table-card">
+              <div class="table-toolbar"><div><p class="eyebrow">Suppliers</p><h3>Quote comparison</h3></div></div>
+              <table class="table" data-sortable>
+                <thead><tr><th>Supplier</th><th>Quote</th><th>Lead</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Shinwell</strong></td><td class="mono">¥4,860</td><td>7d</td><td><span class="badge">Best</span></td></tr>
+                  <tr><td><strong>North Harbor</strong></td><td class="mono">¥5,040</td><td>6d</td><td><span class="badge amber">Near</span></td></tr>
+                  <tr><td><strong>Jade Source</strong></td><td class="mono">¥5,280</td><td>9d</td><td><span class="badge rose">Late</span></td></tr>
+                </tbody>
+              </table>
+            </article>
+            <article class="table-card">
+              <div class="table-toolbar"><div><p class="eyebrow">Timeline</p><h3>Recent events</h3></div></div>
+              <div class="timeline-list">
+                <div class="timeline-item"><span>Today</span><p>New quote from Shinwell at ¥4,860.</p></div>
+                <div class="timeline-item"><span>Yesterday</span><p>North Harbor revised freight assumptions.</p></div>
+                <div class="timeline-item"><span>3 days ago</span><p>Alert threshold crossed on market index.</p></div>
+              </div>
+            </article>
+            <article class="table-card">
+              <div class="table-toolbar"><div><p class="eyebrow">Next</p><h3>Follow-up</h3></div></div>
+              <div class="workflow-grid">
+                <div class="workflow-step"><small>01</small><strong>Lock target</strong><p>Set desired price range.</p></div>
+                <div class="workflow-step"><small>02</small><strong>Contact</strong><p>Send pack to 2 shortlisted vendors.</p></div>
+                <div class="workflow-step"><small>03</small><strong>Approve</strong><p>Push best scenario to lead.</p></div>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

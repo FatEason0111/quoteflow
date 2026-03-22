@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuoteFlow Alerts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/app.css" />
+    <script src="../../assets/js/capture-optin.js" defer></script>
+    <script src="../../assets/js/app.js" defer></script>
+  </head>
+  <body class="app-body" data-page="alerts">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="../../index.html"><span class="brand-mark">QF</span><span class="brand-copy"><strong>QuoteFlow</strong><span>Quote operations workspace</span></span></a>
+        <div class="nav-group">
+          <h4>Workspace</h4>
+          <a class="nav-link" href="./overview.html"><span><i class="nav-dot"></i>Overview</span></a>
+          <a class="nav-link" href="./watchlist.html"><span><i class="nav-dot"></i>Watchlist</span></a>
+          <a class="nav-link" href="./sku-detail.html"><span><i class="nav-dot"></i>SKU Detail</span></a>
+          <a class="nav-link active" href="./alerts.html" aria-current="page"><span><i class="nav-dot"></i>Alerts</span><span class="nav-pill">9</span></a>
+          <a class="nav-link" href="./quote-builder.html"><span><i class="nav-dot"></i>Quote Builder</span></a>
+          <a class="nav-link" href="./suppliers.html"><span><i class="nav-dot"></i>Suppliers</span></a>
+          <a class="nav-link" href="./settings.html"><span><i class="nav-dot"></i>Settings</span></a>
+        </div>
+        <div class="sidebar-card"><strong>Triage mode</strong><p>Start from savings + urgency, then push only the best cases forward.</p><a href="./quote-builder.html">Send selected</a></div>
+      </aside>
+
+      <div class="workspace">
+        <header class="workspace-topbar">
+          <form class="searchbar" role="search">
+            <span class="searchbar-icon" aria-hidden="true"></span>
+            <label class="sr-only" for="alerts-search">Search alert, SKU, supplier</label>
+            <input id="alerts-search" name="q" type="search" placeholder="Search alert, SKU, supplier" />
+          </form>
+          <div class="topbar-actions">
+            <span class="chip">Priority first</span>
+            <span class="user-pill">Eason</span>
+          </div>
+        </header>
+
+        <main class="workspace-main" id="main-content" tabindex="-1">
+          <section class="page-head" data-reveal>
+            <div>
+              <p class="eyebrow">Alerts</p>
+              <h1>Triage before it gets noisy.</h1>
+              <p>A calmer inbox pattern: list on the left, full decision context on the right.</p>
+            </div>
+            <div class="page-actions">
+              <a class="secondary-btn" href="./watchlist.html">Open list</a>
+              <a class="primary-btn" href="./quote-builder.html">Create action pack</a>
+            </div>
+          </section>
+
+          <section class="alert-grid" data-reveal>
+            <article class="list-card">
+              <div class="list-head">
+                <div>
+                  <p class="eyebrow">Inbox</p>
+                  <h3>Open signals</h3>
+                </div>
+                <span class="badge">9 open</span>
+              </div>
+              <div class="alert-list">
+                <button
+                  type="button"
+                  class="alert-item active"
+                  data-alert-trigger
+                  aria-pressed="true"
+                  aria-controls="alert-detail-panel"
+                  data-alert-title="304 Sheet spread widened"
+                  data-alert-summary="Enough spread to negotiate; response quality still acceptable."
+                  data-alert-tone="Needs review"
+                  data-alert-tone-class="amber"
+                  data-alert-saving="¥32k"
+                  data-alert-items="3"
+                  data-alert-window="Today"
+                  data-alert-why-title="Current best quote is still stable but challenger moved closer."
+                  data-alert-why-copy="Good timing to lock pricing pressure."
+                  data-alert-move-title="Shortlist Shinwell and North Harbor for immediate follow-up."
+                  data-alert-move-copy="Move the item into today’s package."
+                >
+                  <div class="alert-top"><h4>304 Sheet spread widened</h4><span class="badge amber">High</span></div>
+                  <p class="list-meta">Gap widened to ¥420 between top two quotes.</p>
+                </button>
+                <button
+                  type="button"
+                  class="alert-item"
+                  data-alert-trigger
+                  aria-pressed="false"
+                  aria-controls="alert-detail-panel"
+                  data-alert-title="Aluminum coil crossed 30D band"
+                  data-alert-summary="Price acceleration is now affecting multiple pending packages."
+                  data-alert-tone="Critical"
+                  data-alert-tone-class="rose"
+                  data-alert-saving="¥44k"
+                  data-alert-items="3"
+                  data-alert-window="Next 4h"
+                  data-alert-why-title="The 30-day movement has broken through the action threshold."
+                  data-alert-why-copy="Three active quotes now need a revised scenario before approval."
+                  data-alert-move-title="Escalate to procurement lead and re-price the open package."
+                  data-alert-move-copy="Keep North Harbor in the loop while validating freight assumptions."
+                >
+                  <div class="alert-top"><h4>Aluminum coil crossed 30D band</h4><span class="badge rose">Critical</span></div>
+                  <p class="list-meta">Price up 6.1%, affecting three pending packages.</p>
+                </button>
+                <button
+                  type="button"
+                  class="alert-item"
+                  data-alert-trigger
+                  aria-pressed="false"
+                  aria-controls="alert-detail-panel"
+                  data-alert-title="Jade Source delayed response"
+                  data-alert-summary="Supplier responsiveness is slipping on a line with low competition."
+                  data-alert-tone="Medium"
+                  data-alert-tone-class=""
+                  data-alert-saving="¥12k"
+                  data-alert-items="1"
+                  data-alert-window="Tomorrow"
+                  data-alert-why-title="Response SLA has exceeded the workspace threshold by 12 hours."
+                  data-alert-why-copy="If left unaddressed, the negotiation round will miss today’s dispatch window."
+                  data-alert-move-title="Swap in a fallback supplier and request a same-day confirmation."
+                  data-alert-move-copy="Keep Jade Source visible, but do not block the package on their reply."
+                >
+                  <div class="alert-top"><h4>Jade Source delayed response</h4><span class="badge">Medium</span></div>
+                  <p class="list-meta">Response SLA exceeded by 12 hours.</p>
+                </button>
+                <button
+                  type="button"
+                  class="alert-item"
+                  data-alert-trigger
+                  aria-pressed="false"
+                  aria-controls="alert-detail-panel"
+                  data-alert-title="Nickel bar market index jumped"
+                  data-alert-summary="Market volatility is back, and leadership wants a scenario view before sign-off."
+                  data-alert-tone="High"
+                  data-alert-tone-class="amber"
+                  data-alert-saving="¥27k"
+                  data-alert-items="2"
+                  data-alert-window="Today"
+                  data-alert-why-title="The market index moved fast enough to create scenario risk on large-volume lines."
+                  data-alert-why-copy="A new baseline is needed before the shortlist can be approved."
+                  data-alert-move-title="Prepare a high-low scenario and align it with Marlin Steel."
+                  data-alert-move-copy="Use the revised range in the next quote pack review."
+                >
+                  <div class="alert-top"><h4>Nickel bar market index jumped</h4><span class="badge amber">High</span></div>
+                  <p class="list-meta">Procurement lead asked for scenario view.</p>
+                </button>
+              </div>
+            </article>
+
+            <article class="detail-card" id="alert-detail-panel">
+              <div class="detail-head">
+                <div>
+                  <p class="eyebrow">Selected alert</p>
+                  <h3 id="alert-detail-title">304 Sheet spread widened</h3>
+                  <p id="alert-detail-summary">Enough spread to negotiate; response quality still acceptable.</p>
+                </div>
+                <span class="badge amber" id="alert-detail-tone">Needs review</span>
+              </div>
+              <div class="alert-kpis">
+                <div class="alert-kpi"><span>Potential saving</span><strong id="alert-kpi-saving">¥32k</strong></div>
+                <div class="alert-kpi"><span>Affected items</span><strong id="alert-kpi-items">3</strong></div>
+                <div class="alert-kpi"><span>Window</span><strong id="alert-kpi-window">Today</strong></div>
+              </div>
+              <div class="field-stack">
+                <div class="field"><label>Why it matters</label><strong id="alert-why-title">Current best quote is still stable but challenger moved closer.</strong><p id="alert-why-copy">Good timing to lock pricing pressure.</p></div>
+                <div class="field"><label>Suggested move</label><strong id="alert-move-title">Shortlist Shinwell and North Harbor for immediate follow-up.</strong><p id="alert-move-copy">Move the item into today’s package.</p></div>
+              </div>
+              <div class="modal-card">
+                <div class="modal-head">
+                  <div>
+                    <p class="eyebrow">Quick actions</p>
+                    <h3>Decision bar</h3>
+                  </div>
+                  <span class="badge">1 click</span>
+                </div>
+                <div class="inline-actions inline-actions-row">
+                  <a class="secondary-btn" href="./sku-detail.html">Open detail</a>
+                  <a class="secondary-btn" href="./suppliers.html">View supplier</a>
+                  <a class="primary-btn" href="./quote-builder.html">Add to pack</a>
+                </div>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

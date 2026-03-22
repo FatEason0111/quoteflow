@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuoteFlow Suppliers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/css/app.css" />
+    <script src="../../assets/js/capture-optin.js" defer></script>
+    <script src="../../assets/js/app.js" defer></script>
+  </head>
+  <body class="app-body" data-page="suppliers">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="../../index.html"><span class="brand-mark">QF</span><span class="brand-copy"><strong>QuoteFlow</strong><span>Quote operations workspace</span></span></a>
+        <div class="nav-group">
+          <h4>Workspace</h4>
+          <a class="nav-link" href="./overview.html"><span><i class="nav-dot"></i>Overview</span></a>
+          <a class="nav-link" href="./watchlist.html"><span><i class="nav-dot"></i>Watchlist</span></a>
+          <a class="nav-link" href="./sku-detail.html"><span><i class="nav-dot"></i>SKU Detail</span></a>
+          <a class="nav-link" href="./alerts.html"><span><i class="nav-dot"></i>Alerts</span></a>
+          <a class="nav-link" href="./quote-builder.html"><span><i class="nav-dot"></i>Quote Builder</span></a>
+          <a class="nav-link active" href="./suppliers.html" aria-current="page"><span><i class="nav-dot"></i>Suppliers</span></a>
+          <a class="nav-link" href="./settings.html"><span><i class="nav-dot"></i>Settings</span></a>
+        </div>
+        <div class="sidebar-card"><strong>Supplier lens</strong><p>Performance, quote quality, and communication health in one place.</p><a href="./quote-builder.html">Use shortlist</a></div>
+      </aside>
+
+      <div class="workspace">
+        <header class="workspace-topbar">
+          <form class="searchbar" role="search">
+            <span class="searchbar-icon" aria-hidden="true"></span>
+            <label class="sr-only" for="supplier-search">Search supplier, category, region</label>
+            <input id="supplier-search" name="q" type="search" placeholder="Search supplier, category, region" />
+          </form>
+          <div class="topbar-actions">
+            <span class="chip">128 suppliers</span>
+            <span class="user-pill">Eason</span>
+          </div>
+        </header>
+
+        <main class="workspace-main" id="main-content" tabindex="-1">
+          <section class="page-head" data-reveal>
+            <div>
+              <p class="eyebrow">Suppliers</p>
+              <h1>Who is worth the next call?</h1>
+              <p>Performance view for speed, win rate, and commercial reliability.</p>
+            </div>
+            <div class="page-actions">
+              <a class="secondary-btn" href="./watchlist.html">Back to SKUs</a>
+              <a class="primary-btn" href="./quote-builder.html">Use shortlist</a>
+            </div>
+          </section>
+
+          <section class="supplier-grid" data-reveal>
+            <article class="supplier-card">
+              <div class="supplier-head">
+                <div>
+                  <p class="eyebrow">Supplier profile</p>
+                  <h3>Shinwell Metal</h3>
+                </div>
+                <span class="badge">Preferred</span>
+              </div>
+              <div class="supplier-stack">
+                <div class="supplier-score"><span>Score</span><strong>92 / 100</strong></div>
+                <div class="supplier-row"><span>Response SLA</span><strong>2.1h</strong></div>
+                <div class="supplier-row"><span>Win rate</span><strong>48%</strong></div>
+                <div class="supplier-row"><span>Quote accuracy</span><strong>97%</strong></div>
+                <div class="supplier-row"><span>Coverage</span><strong>6 categories</strong></div>
+              </div>
+            </article>
+
+            <article class="supplier-card">
+              <div class="supplier-head">
+                <div>
+                  <p class="eyebrow">Communication</p>
+                  <h3>Recent cadence</h3>
+                </div>
+              </div>
+              <div class="timeline-list">
+                <div class="timeline-item"><span>Today</span><p>Sent revised 304 Sheet quote.</p></div>
+                <div class="timeline-item"><span>Yesterday</span><p>Confirmed freight adjustment.</p></div>
+                <div class="timeline-item"><span>Last week</span><p>Won aluminum coil package.</p></div>
+              </div>
+            </article>
+          </section>
+
+          <section class="card-grid-3" data-reveal>
+            <article class="table-card">
+              <div class="table-toolbar"><div><p class="eyebrow">Performance</p><h3>Quote history</h3></div></div>
+              <table class="table" data-sortable>
+                <thead><tr><th>SKU</th><th>Last quote</th><th>Lead</th><th>Result</th></tr></thead>
+                <tbody>
+                  <tr><td>304 Sheet</td><td class="mono">¥4,860</td><td>7d</td><td><span class="badge">Won</span></td></tr>
+                  <tr><td>Al Coil</td><td class="mono">¥18,780</td><td>6d</td><td><span class="badge amber">Near</span></td></tr>
+                  <tr><td>Zinc Plate</td><td class="mono">¥22,710</td><td>8d</td><td><span class="badge">Won</span></td></tr>
+                </tbody>
+              </table>
+            </article>
+            <article class="table-card">
+              <div class="table-toolbar"><div><p class="eyebrow">Risk</p><h3>Monitoring</h3></div></div>
+              <div class="field-stack">
+                <div class="field"><label>Delivery</label><strong>On time over last 90D</strong><p>Minor issue in week 5.</p></div>
+                <div class="field"><label>Commercial</label><strong>Stable margin behavior</strong><p>No abrupt variance beyond agreed bands.</p></div>
+              </div>
+            </article>
+            <article class="table-card">
+              <div class="table-toolbar"><div><p class="eyebrow">Decision</p><h3>Use cases</h3></div></div>
+              <div class="workflow-grid">
+                <div class="workflow-step"><small>01</small><strong>Primary</strong><p>Fast-turn quote rounds.</p></div>
+                <div class="workflow-step"><small>02</small><strong>Fallback</strong><p>Backup on large volumes.</p></div>
+                <div class="workflow-step"><small>03</small><strong>Negotiate</strong><p>Use as anchor reference.</p></div>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

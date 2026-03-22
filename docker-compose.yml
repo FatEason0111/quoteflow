@@ -1,0 +1,64 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: pricetool
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pricetool-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d pricetool"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      APP_NAME: quoteflow-api
+      APP_VERSION: v0.0.1
+      PORT: 3000
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/pricetool?schema=public
+      CORS_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+      SESSION_COOKIE_NAME: pricetool_session
+      SESSION_TTL_HOURS: 24
+      SESSION_REMEMBER_DAYS: 30
+      BCRYPT_ROUNDS: 10
+      RECONCILIATION_INTERVAL_MINUTES: 15
+      DISABLE_RECONCILIATION_JOB: "true"
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/api/health').then((response) => process.exit(response.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "5173:80"
+
+volumes:
+  pricetool-postgres:

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuoteFlow Overview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=SUSE:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/app.css" />
+    <script src="../../assets/js/capture-optin.js" defer></script>
+    <script src="../../assets/js/app.js" defer></script>
+  </head>
+  <body class="app-body" data-page="overview">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="../../index.html">
+          <span class="brand-mark">QF</span>
+          <span class="brand-copy">
+            <strong>QuoteFlow</strong>
+            <span>Quote operations workspace</span>
+          </span>
+        </a>
+        <div class="nav-group">
+          <h4>Workspace</h4>
+          <a class="nav-link active" href="./overview.html" aria-current="page"><span><i class="nav-dot"></i>Overview</span></a>
+          <a class="nav-link" href="./watchlist.html"><span><i class="nav-dot"></i>Watchlist</span><span class="nav-pill">54</span></a>
+          <a class="nav-link" href="./sku-detail.html"><span><i class="nav-dot"></i>SKU Detail</span></a>
+          <a class="nav-link" href="./alerts.html"><span><i class="nav-dot"></i>Alerts</span><span class="nav-pill">9</span></a>
+          <a class="nav-link" href="./quote-builder.html"><span><i class="nav-dot"></i>Quote Builder</span></a>
+          <a class="nav-link" href="./suppliers.html"><span><i class="nav-dot"></i>Suppliers</span></a>
+          <a class="nav-link" href="./settings.html"><span><i class="nav-dot"></i>Settings</span></a>
+        </div>
+        <div class="sidebar-card">
+          <strong>Daily review</strong>
+          <p>Open signals, compare suppliers, then assemble the package.</p>
+          <a href="./alerts.html">Start with alerts</a>
+        </div>
+      </aside>
+
+      <div class="workspace">
+        <header class="workspace-topbar">
+          <form class="searchbar" role="search">
+            <span class="searchbar-icon" aria-hidden="true"></span>
+            <label class="sr-only" for="overview-search">Search SKU, supplier, project</label>
+            <input id="overview-search" name="q" type="search" placeholder="Search SKU, supplier, project" />
+          </form>
+          <div class="topbar-actions">
+            <span class="chip">CN East</span>
+            <button class="icon-btn" type="button" aria-label="Open notifications">9</button>
+            <span class="user-pill">Eason</span>
+          </div>
+        </header>
+
+        <main class="workspace-main" id="main-content" tabindex="-1">
+          <section class="page-head" data-reveal>
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h1>Price signals, ready to act.</h1>
+              <p>High-level movement, top priorities, and today’s recommended actions.</p>
+            </div>
+            <div class="page-actions">
+              <a class="secondary-btn" href="./watchlist.html">Open watchlist</a>
+              <a class="primary-btn" href="./quote-builder.html">Build quote pack</a>
+            </div>
+          </section>
+
+          <section class="card-grid-4" data-reveal>
+            <article class="metric"><span>Tracked SKUs</span><strong>18,240</strong><span class="delta">+124 this week</span></article>
+            <article class="metric"><span>Active alerts</span><strong>09</strong><span class="delta">3 require action</span></article>
+            <article class="metric"><span>Best saving window</span><strong>¥182k</strong><span class="delta">across 14 items</span></article>
+            <article class="metric"><span>Supplier coverage</span><strong>128</strong><span class="delta">92% responsive</span></article>
+          </section>
+
+          <section class="split-grid" data-reveal>
+            <article class="panel">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Market pulse</p>
+                  <h2>Weekly movement</h2>
+                </div>
+                <span class="badge">Stable uptrend</span>
+              </div>
+              <div class="curve-card">
+                <div class="curve-head">
+                  <span>304 Stainless Sheet</span>
+                  <strong>+3.8%</strong>
+                </div>
+                <svg viewBox="0 0 640 240" class="curve-graphic" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="overviewFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(48,186,120,0.24)"></stop>
+                      <stop offset="100%" stop-color="rgba(48,186,120,0.02)"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path d="M18 194 C66 178, 112 156, 154 162 S244 210, 288 174 S370 106, 410 116 S486 160, 548 126 S606 78, 622 84 L622 232 L18 232 Z" fill="url(#overviewFill)"></path>
+                  <path d="M18 194 C66 178, 112 156, 154 162 S244 210, 288 174 S370 106, 410 116 S486 160, 548 126 S606 78, 622 84" fill="none" stroke="#30BA78" stroke-width="6" stroke-linecap="round"></path>
+                  <circle cx="622" cy="84" r="8" fill="#30BA78"></circle>
+                </svg>
+                <div class="axis-labels">
+                  <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                </div>
+              </div>
+              <div class="signal-strip">
+                <article class="signal-card"><span>Best gap</span><strong>¥420</strong></article>
+                <article class="signal-card"><span>Risk vendors</span><strong>2</strong></article>
+                <article class="signal-card"><span>Next window</span><strong>14:00</strong></article>
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Action queue</p>
+                  <h2>Today</h2>
+                </div>
+              </div>
+              <div class="timeline-list">
+                <div class="timeline-item"><span>09:30</span><p>Review aluminum coil spike in South region.</p></div>
+                <div class="timeline-item"><span>11:00</span><p>Follow up with Shinwell on revised stainless quote.</p></div>
+                <div class="timeline-item"><span>14:00</span><p>Send negotiation pack for three high-variance items.</p></div>
+                <div class="timeline-item"><span>17:30</span><p>Approve daily summary for procurement lead.</p></div>
+              </div>
+            </article>
+          </section>
+
+          <section class="card-grid-3" data-reveal>
+            <article class="table-card">
+              <div class="table-toolbar">
+                <div>
+                  <p class="eyebrow">Watchlist</p>
+                  <h3>Top movers</h3>
+                </div>
+                <a class="secondary-btn" href="./watchlist.html">View all</a>
+              </div>
+              <table class="table" data-sortable>
+                <thead>
+                  <tr><th>SKU</th><th>Now</th><th>7D</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><div class="row-title"><strong>304 Sheet</strong><span>CN-SS-304</span></div></td><td class="mono">¥4,860</td><td><span class="badge">+3.8%</span></td></tr>
+                  <tr><td><div class="row-title"><strong>Al Coil</strong><span>CN-AL-1060</span></div></td><td class="mono">¥18,420</td><td><span class="badge amber">+6.1%</span></td></tr>
+                  <tr><td><div class="row-title"><strong>Copper Rod</strong><span>CN-CU-8MM</span></div></td><td class="mono">¥61,300</td><td><span class="badge rose">-1.4%</span></td></tr>
+                </tbody>
+              </table>
+            </article>
+
+            <article class="table-card">
+              <div class="table-toolbar">
+                <div>
+                  <p class="eyebrow">Supplier focus</p>
+                  <h3>Fastest responders</h3>
+                </div>
+              </div>
+              <table class="table" data-sortable>
+                <thead>
+                  <tr><th>Supplier</th><th>SLA</th><th>Win</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Shinwell</strong></td><td>2.1h</td><td>48%</td></tr>
+                  <tr><td><strong>North Harbor</strong></td><td>3.4h</td><td>31%</td></tr>
+                  <tr><td><strong>Atlas Trade</strong></td><td>4.0h</td><td>24%</td></tr>
+                </tbody>
+              </table>
+            </article>
+
+            <article class="table-card">
+              <div class="table-toolbar">
+                <div>
+                  <p class="eyebrow">Next step</p>
+                  <h3>Suggested moves</h3>
+                </div>
+              </div>
+              <div class="workflow-grid">
+                <div class="workflow-step"><small>01</small><strong>Open alert</strong><p>Rank by savings and risk.</p></div>
+                <div class="workflow-step"><small>02</small><strong>Compare</strong><p>Check supplier spread and timing.</p></div>
+                <div class="workflow-step"><small>03</small><strong>Send</strong><p>Package the final quote plan.</p></div>
+              </div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
