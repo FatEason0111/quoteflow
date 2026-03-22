@@ -3,6 +3,11 @@ import { comparePassword, generateSessionToken, hashSessionToken } from "../util
 import { badRequest, unauthorized } from "../utils/errors.js";
 import { env } from "../config/env.js";
 import { toApiUser } from "../utils/presentation.js";
+import {
+  assertLoginAttemptAllowed,
+  clearLoginFailures,
+  recordLoginFailure,
+} from "../utils/loginThrottle.js";
 
 function getSessionMaxAge(rememberMe) {
   if (rememberMe) {
@@ -23,9 +28,15 @@ export async function login({
     throw badRequest("Email and password are required.");
   }
 
+  const normalizedEmail = email.trim().toLowerCase();
+  assertLoginAttemptAllowed({
+    email: normalizedEmail,
+    ipAddress,
+  });
+
   const user = await prisma.user.findFirst({
     where: {
-      email: email.trim().toLowerCase(),
+      email: normalizedEmail,
       status: "ACTIVE",
     },
     include: {
@@ -34,13 +45,26 @@ export async function login({
   });
 
   if (!user) {
+    recordLoginFailure({
+      email: normalizedEmail,
+      ipAddress,
+    });
     throw unauthorized("Invalid email or password.");
   }
 
   const isValid = await comparePassword(password, user.passwordHash);
   if (!isValid) {
+    recordLoginFailure({
+      email: normalizedEmail,
+      ipAddress,
+    });
     throw unauthorized("Invalid email or password.");
   }
+
+  clearLoginFailures({
+    email: normalizedEmail,
+    ipAddress,
+  });
 
   const token = generateSessionToken();
   const sessionMaxAge = getSessionMaxAge(rememberMe);

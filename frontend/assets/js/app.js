@@ -1,6 +1,4 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const AUTH_LOCAL_STORAGE_KEY = "pricetool-auth-session";
-const AUTH_SESSION_STORAGE_KEY = "pricetool-auth-session-temporary";
 const API_BASE_STORAGE_KEY = "pricetool-api-base";
 const DEFAULT_FILE_API_BASE = "http://localhost:3000/api";
 const LANDING_ENTRY = "index.html";
@@ -305,57 +303,6 @@ function getSafeReturnTo(rawValue) {
   return `./${value.replace(/^\.?\//, "")}`;
 }
 
-function readCachedSession() {
-  const persisted =
-    window.localStorage.getItem(AUTH_LOCAL_STORAGE_KEY) ||
-    window.sessionStorage.getItem(AUTH_SESSION_STORAGE_KEY);
-
-  if (!persisted) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(persisted);
-  } catch (error) {
-    clearCachedSession();
-    return null;
-  }
-}
-
-function getCacheMode() {
-  if (window.localStorage.getItem(AUTH_LOCAL_STORAGE_KEY)) {
-    return "local";
-  }
-
-  if (window.sessionStorage.getItem(AUTH_SESSION_STORAGE_KEY)) {
-    return "session";
-  }
-
-  return null;
-}
-
-function cacheSession(session, remember = true) {
-  clearCachedSession();
-
-  const storage = remember ? window.localStorage : window.sessionStorage;
-  const key = remember ? AUTH_LOCAL_STORAGE_KEY : AUTH_SESSION_STORAGE_KEY;
-  storage.setItem(key, JSON.stringify(session));
-}
-
-function refreshCachedSession(session) {
-  const cacheMode = getCacheMode();
-  if (!cacheMode) {
-    return;
-  }
-
-  cacheSession(session, cacheMode === "local");
-}
-
-function clearCachedSession() {
-  window.localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
-  window.sessionStorage.removeItem(AUTH_SESSION_STORAGE_KEY);
-}
-
 function normalizeApiBase(rawValue) {
   const value = String(rawValue ?? "").trim().replace(/\/+$/, "");
   if (!value) {
@@ -473,7 +420,6 @@ async function fetchCurrentSession() {
     return await requestData("/auth/me");
   } catch (error) {
     if (error.status === 401) {
-      clearCachedSession();
       return null;
     }
 
@@ -482,14 +428,8 @@ async function fetchCurrentSession() {
 }
 
 async function requireWorkspaceSession() {
-  const cached = readCachedSession();
-  if (cached) {
-    updateUserPills(cached);
-  }
-
   const session = await fetchCurrentSession();
   if (session) {
-    refreshCachedSession(session);
     return session;
   }
 
@@ -509,8 +449,6 @@ async function logoutCurrentSession() {
     if (error.status !== 401) {
       throw error;
     }
-  } finally {
-    clearCachedSession();
   }
 }
 
@@ -878,7 +816,7 @@ async function initLandingPage() {
 
   let closeTimer = 0;
   let lastFocusedElement = null;
-  let session = readCachedSession();
+  let session = null;
 
   const providerPresets = {
     sso: {
@@ -1029,7 +967,6 @@ async function initLandingPage() {
         },
       });
 
-      cacheSession(session, remember);
       updateSessionView(session);
       form.reset();
       if (rememberInput) {
@@ -1102,10 +1039,6 @@ async function initLandingPage() {
     session = await fetchCurrentSession();
   } catch (error) {
     status.textContent = error.message || "Unable to reach the API.";
-  }
-
-  if (session) {
-    refreshCachedSession(session);
   }
 
   updateSessionView(session);

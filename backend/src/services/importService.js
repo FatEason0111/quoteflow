@@ -314,7 +314,19 @@ export async function importCsv({ workspaceId, actorUserId, type, fileName, buff
     throw badRequest("CSV file is required.");
   }
 
-  const rows = parseCsvBuffer(buffer);
+  let rows;
+  try {
+    rows = parseCsvBuffer(buffer);
+  } catch (error) {
+    throw badRequest("Invalid CSV file.", {
+      reason: error.message,
+    });
+  }
+
+  if (!rows.length) {
+    throw badRequest("CSV file must include at least one data row.");
+  }
+
   const job = await createJob(workspaceId, actorUserId, type, fileName);
 
   let result;

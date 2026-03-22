@@ -15,12 +15,20 @@ export function toCsv(rows) {
   }
 
   const headers = Object.keys(rows[0]);
+  const sanitizeForSpreadsheet = (value) => {
+    if (/^\s*[=+\-@]/.test(value)) {
+      return `'${value}`;
+    }
+
+    return value;
+  };
+
   const escape = (value) => {
     if (value == null) {
       return "";
     }
 
-    const stringValue = String(value);
+    const stringValue = sanitizeForSpreadsheet(String(value));
     if (/[",\n]/.test(stringValue)) {
       return `"${stringValue.replace(/"/g, '""')}"`;
     }
