@@ -59,13 +59,13 @@ docker compose up --build
 
 ### Demo 登录账号
 
-所有种子账号密码统一为 `QuoteFlow123!`
+当前种子账号密码统一为 `Pricetool123!`
 
-- `admin@quoteflow.local`
-- `analyst@quoteflow.local`
-- `buyer@quoteflow.local`
-- `approver@quoteflow.local`
-- `finance@quoteflow.local`
+- `admin@pricetool.local`
+- `analyst@pricetool.local`
+- `buyer@pricetool.local`
+- `approver@pricetool.local`
+- `finance@pricetool.local`
 
 ## 后续建议
 
